@@ -23,7 +23,7 @@ This project demonstrates the implementation of various HTML5 elements, includin
 ## Installation
 1. Clone the repository or download the files:
    ```sh
-   git clone https://github.com/yourusername/advanced-html5-forms.git
+   git clone https://github.com/P-Mbugua/Advanced_HTML_PLP.git
    ```
 2. Navigate to the project folder:
    ```sh
@@ -47,7 +47,7 @@ This project demonstrates the implementation of various HTML5 elements, includin
 Feel free to contribute to improving the project. Fork the repository and submit a pull request with your improvements.
 
 ## Live Demo
-Check out the live demo [here](https://www.mbuguapeter.netlify.app).
+Check out the live demo [here](https://p-mbugua.github.io/Advanced_HTML_PLP/).
 
 ## License
 This project is open-source and available under the [MIT License](LICENSE).
