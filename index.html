@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced HTML5 Elements & Forms</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #15803d;
+            --accent-color: #eab308;
+            --bg-color: #f4f4f4;
+            --text-color: #333;
+            --border-radius: 10px;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2 {
+            color: var(--primary-color);
+            text-align: center;
+        }
+        p {
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-color);
+        }
+        a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: var(--border-radius);
+        }
+        button {
+            background: var(--accent-color);
+            border: none;
+            padding: 12px;
+            cursor: pointer;
+            color: white;
+            font-size: 16px;
+            width: 100%;
+            border-radius: var(--border-radius);
+            transition: 0.3s;
+        }
+        button:hover {
+            background: #c79c07;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Advanced HTML5 Elements & Forms</h1>
+        
+        <h2>Contact Table</h2>
+        <p><strong>Note:</strong> Kindly register so that the names can appear on the table.</p>
+        <table id="contactTable">
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Password</th>
+                <th>Date of Birth</th>
+            </tr>
+        </table>
+        
+        <h2>Registration Form</h2>
+        <form id="registrationForm">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="form-group">
+                <label for="dob">Date of Birth:</label>
+                <input type="date" id="dob" name="dob" required>
+            </div>
+            <button type="submit">Register</button>
+        </form>
+        
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const contactTable = document.getElementById('contactTable');
+                const storedUsers = JSON.parse(localStorage.getItem('users')) || [];
+                storedUsers.forEach(user => addUserToTable(user));
+            });
+            
+            document.getElementById('registrationForm').addEventListener('submit', function(event) {
+                event.preventDefault();
+                const formData = new FormData(event.target);
+                const userData = {};
+                formData.forEach((value, key) => { userData[key] = value; });
+                
+                let users = JSON.parse(localStorage.getItem('users')) || [];
+                users.push(userData);
+                localStorage.setItem('users', JSON.stringify(users));
+                
+                addUserToTable(userData);
+                alert('Registration details saved successfully!');
+                event.target.reset();
+            });
+            
+            function addUserToTable(user) {
+                const table = document.getElementById('contactTable');
+                const row = table.insertRow();
+                row.insertCell(0).textContent = user.name;
+                row.insertCell(1).textContent = user.email;
+                row.insertCell(2).textContent = '******';
+                row.insertCell(3).textContent = user.dob;
+            }
+        </script>
+    </div>
+</body>
+</html>
